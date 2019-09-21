@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import { publicPath } from '../vue.config';
 
 Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: publicPath,
   routes: [
     {
       path: '/',
