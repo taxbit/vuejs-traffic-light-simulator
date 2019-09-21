@@ -19,19 +19,19 @@ const router = new Router({
       path: '/red',
       name: 'red',
       component: Home,
-      props: { currentColorIs: 'red', time: 10000, nextColor: 'yellow' },
+      props: { currentColorIs: 'red', time: 10000 },
     },
     {
       path: '/yellow',
       name: 'yellow',
       component: Home,
-      props: { currentColorIs: 'yellow', time: 3000, nextColor: ['green', 'red'] },
+      props: { currentColorIs: 'yellow', time: 3000 },
     },
     {
       path: '/green',
       name: 'green',
       component: Home,
-      props: { currentColorIs: 'green', time: 15000, nextColor: 'yellow' },
+      props: { currentColorIs: 'green', time: 15000 },
     },
   ],
 });

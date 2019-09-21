@@ -11,7 +11,7 @@ import Lamp from '@/components/Lamp.vue';
 
 export default {
   name: 'home',
-  props: ['currentColorIs', 'time', 'nextColor'],
+  props: ['currentColorIs', 'time'],
   components: {
     Lamp,
   },
@@ -21,34 +21,37 @@ export default {
       interval: null,
     };
   },
+  computed: {
+    getNextColor() {
+      this.$store.commit('setNextColor', this.currentColorIs);
+      return this.$store.state.nextColor;
+    },
+  },
   watch: {
     $route(to, from) {
-      const timer = this.time;
-
-      const nextColor = this.currentColorIs !== 'yellow'
-        ? this.nextColor
-        : (this.nextColor.unshift(this.nextColor.pop()), this.nextColor[1]);
-
-      setTimeout(() => { this.$router.push(nextColor); }, timer);
-      this.counter = this.time / 1000;
-      clearInterval(this.interval);
-      this.interval = setInterval(() => {
-        this.counter -= 1;
-      }, 1000);
+      this.setTimer();
     },
   },
   mounted() {
-    const timer = this.time;
-
-    const nextColor = this.currentColorIs !== 'yellow'
-      ? this.nextColor
-      : (this.nextColor.unshift(this.nextColor.pop()), this.nextColor[1]);
-
-    setTimeout(() => { this.$router.push(nextColor); }, timer);
-    this.interval = setInterval(() => {
-      this.counter -= 1;
-    }, 1000);
+    this.setTimer();
   },
+  methods: {
+
+    setTimer() {
+      const timer = this.time;
+
+      setTimeout(() => { this.$router.push(this.getNextColor); }, timer);
+
+      this.counter = this.time / 1000;
+
+      if (this.interval) clearInterval(this.interval);
+
+      this.interval = setInterval(() => {
+        this.counter -= 1;
+      }, 1000);
+
+    }
+  }
 };
 </script>
 
