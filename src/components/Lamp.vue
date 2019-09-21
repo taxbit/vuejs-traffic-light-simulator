@@ -1,7 +1,7 @@
 <template>
-  <div :class="`lamp_${color}${color === currentColorIsOn ? '' : '_off'} ${sec < 4 && color === currentColorIsOn ? 'blink' : ''}`">
+  <div :class="`lamp_${color}${color === currentColorIs ? '' : '_off'} ${sec < 4 && color === currentColorIs ? 'blink' : ''}`">
     <div class="lamp__counter">
-      {{color === currentColorIsOn ? sec: ''}}
+      {{color === currentColorIs ? sec: ''}}
     </div>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'Lamp',
-  props: ['color', 'currentColorIsOn', 'sec'],
+  props: ['color', 'currentColorIs', 'sec'],
 };
 </script>
 
