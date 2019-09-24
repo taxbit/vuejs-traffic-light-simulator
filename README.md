@@ -1,6 +1,6 @@
 # Traffic Light Simulator on Vue.js
 
-🎮 Демо: [https://taxbit.github.com/vuejs-traffic-light-simulator](https://taxbit.github.com/vuejs-traffic-light-simulator)
+🎮 Демо: [https://taxbit.github.io/vuejs-traffic-light-simulator](https://taxbit.github.io/vuejs-traffic-light-simulator)
 
 *Описание:*
 
