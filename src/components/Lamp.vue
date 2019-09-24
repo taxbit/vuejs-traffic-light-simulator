@@ -1,7 +1,7 @@
 <template>
   <div :class="lampClasses">
-    <div class="lamp__counter">
-      {{counter}}
+    <div class="lamp__counter" v-if="lampIsOn">
+      {{sec}}
     </div>
   </div>
 </template>
@@ -20,10 +20,7 @@ export default {
         ${this.lampIsOn ? 'lamp_on' : ''} 
         ${this.lampIsOn && this.sec < 4 ? 'lamp_blink' : ''}`;
     },
-    counter: function() {
-      return this.lampIsOn ? this.sec : '';
-    },
-  }
+  },
 };
 </script>
 
