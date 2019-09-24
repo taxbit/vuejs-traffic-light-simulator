@@ -1,7 +1,7 @@
 <template>
-  <div :class="`lamp_${color}${color === currentColorIs ? '' : '_off'} ${sec < 4 && color === currentColorIs ? 'blink' : ''}`">
+  <div :class="lampClasses">
     <div class="lamp__counter">
-      {{color === currentColorIs ? sec: ''}}
+      {{counter}}
     </div>
   </div>
 </template>
@@ -10,6 +10,20 @@
 export default {
   name: 'Lamp',
   props: ['color', 'currentColorIs', 'sec'],
+  computed: {
+    lampIsOn: function () {
+      return this.color === this.currentColorIs;
+    },
+    lampClasses: function() {
+      return `
+        lamp_${this.color}
+        ${this.lampIsOn ? 'lamp_on' : ''} 
+        ${this.lampIsOn && this.sec < 4 ? 'lamp_blink' : ''}`;
+    },
+    counter: function() {
+      return this.lampIsOn ? this.sec : '';
+    },
+  }
 };
 </script>
 
@@ -22,26 +36,20 @@ export default {
   .lamp_red {
     background-color: red;
     color: white;
+    opacity: 0.5;
   }
   .lamp_green {
     background-color: rgb(0, 212, 0);
     color: white;
+    opacity: 0.5;
   }
   .lamp_yellow {
     background-color: yellow;
     color: black;
-  }
-  .lamp_red_off {
-    background-color: red;
     opacity: 0.5;
   }
-  .lamp_green_off {
-    background-color: green;
-    opacity: 0.5;
-  }
-  .lamp_yellow_off {
-    background-color: yellow;
-    opacity: 0.5;
+  .lamp_on {
+    opacity: 1;
   }
   .lamp__counter {
     width: 30px;
@@ -51,7 +59,7 @@ export default {
     align-self: center;
     font-family: Arial, Helvetica, sans-serif;
   }
-  .blink {
+  .lamp_blink {
     animation: blink-animation 0.2s steps(10, start) infinite;
   }
 </style>

@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      counter: this.time / 1000,
+      counter: null,
       interval: null,
     };
   },
